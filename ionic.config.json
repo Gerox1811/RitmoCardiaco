@@ -1,0 +1,7 @@
+{
+  "name": "cardio",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
