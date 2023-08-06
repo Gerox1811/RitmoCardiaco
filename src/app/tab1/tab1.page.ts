@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,15 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  constructor(public database: AngularFireDatabaseModule) {
+    this.leerMediciones();
+  }
+
+  leerMediciones(){
+    const path = 'ritmo_cardiaco/';
+    this.database.list(path).valueChanges().subscribe( res =>{
+      console.log('Ritmo Crdiaco->', res);
+    })
+  }
 
 }
