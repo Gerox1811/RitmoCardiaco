@@ -9,9 +9,21 @@
 <ion-content [fullscreen]="true">
   <ion-list>
     <ion-item>
-      <ion-input label="Latidos por Minuto" placeholder="Esperando Datos del sensor"></ion-input>
+      <ion-icon name="heart" slot="start" color="danger"></ion-icon>
+      <ion-input label="Latidos por Minuto" [value]="(items$ | async)?.[0]?.ritmo_cardiaco || ''" readonly></ion-input>
     </ion-item>
   </ion-list>
-  <ion-button expand="block">Mostrar Graficas del ritmo Cariaco</ion-button>
 
+  <ion-button expand="block">Mostrar Gráficas del Ritmo Cardiaco</ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items$ | async">
+      {{ formatTime(item.timestamp) }}: {{ item.ritmo_cardiaco }}
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+
+
+
+

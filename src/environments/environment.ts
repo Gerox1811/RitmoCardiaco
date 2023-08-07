@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
- firebaseConfig: {
+ firebase: {
   apiKey: "AIzaSyCtfg3XybgeuPs6z8ZaevHbXDVw4TJ7McI",
   authDomain: "ritmo-cardiaco-711cf.firebaseapp.com",
   databaseURL: "https://ritmo-cardiaco-711cf-default-rtdb.firebaseio.com",
