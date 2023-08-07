@@ -1,4 +1,25 @@
 <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>
+        Datos Cardiacos
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content [fullscreen]="true">
+    <ion-list>
+      <ion-item>
+        <ion-icon name="heart" slot="start" color="danger"></ion-icon>
+        <ion-label>Pulsaciones por minuto:</ion-label>
+        <ion-input [(ngModel)]="pulsacionesPorMinuto" type="number"></ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+
+
+
+<!--<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Datos Cardiacos
@@ -22,7 +43,7 @@
     </ion-item>
   </ion-list>
 </ion-content>
-
+-->
 
 
 
