@@ -9,7 +9,10 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-
+import { CalendarModule, DateAdapter  } from 'angular-calendar';
+import { CommonModule } from '@angular/common'; 
+import { DateFnsModule } from 'ngx-date-fns';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +21,13 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    CommonModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter, // Proporciona el adaptador de fecha
+      useFactory: adapterFactory // Utiliza el adaptador de fecha de Date-Fns
+    }),
+    DateFnsModule.forRoot()
   ],
   providers: 
   [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

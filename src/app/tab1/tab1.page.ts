@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { DatabaseService  } from '../services/database.service';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
+import { Chart } from 'chart.js/auto';
+import { CalendarService } from '../services/calendar.service';
 
 @Component({
   selector: 'app-tab1',
@@ -12,24 +14,55 @@ import 'firebase/database';
 
 export class Tab1Page implements OnInit {
   pulsacionesPorMinuto: number = 0;
+  chart: any;
 
-  constructor(private databaseService: DatabaseService) {}
+  constructor(private databaseService: DatabaseService,private calendarService: CalendarService) {}
 
   ngOnInit() {
-    console.log('Initializing Tab1Page...');
+   
+  console.log('Initializing Tab1Page...');
     this.loadPulsacionesPorMinuto();
+    this.createChart();
+
   }
+
+
   loadPulsacionesPorMinuto() {
     this.databaseService.getPulsacionesPorMinuto().subscribe((pulsaciones) => {
       this.pulsacionesPorMinuto = pulsaciones;
       console.log('Pulsaciones por minuto recibidas:', this.pulsacionesPorMinuto);
+      const newEvent = {
+        title: 'Ritmo Cardíaco',
+        date: new Date(),
+        description: `Pulsaciones: ${this.pulsacionesPorMinuto}`
+      };
+      this.calendarService.addEvent(newEvent);
     });
   }
 
 
 
+createChart() {
+    this.chart = new Chart('heartRateChart', {
+      type: 'doughnut', // Puedes ajustar el tipo de gráfico
+      data: {
+        labels: ['Latidos'],
+        datasets: [
+          {
+            data: [this.pulsacionesPorMinuto],
+            backgroundColor: ['rgba(255, 99, 132, 0.6)'], // Color del medidor
+            borderWidth: 0
+          }
+        ]
+      },
 
-
+      options: {
+        cutout: 85, // Espacio en blanco en el centro del medidor
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  }
 
    /* console.log('Fetching items from Firebase Realtime Database...');
     const limitToLast = 1; // Puedes ajustar este valor según tus necesidades
