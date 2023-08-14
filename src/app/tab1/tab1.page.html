@@ -1,4 +1,28 @@
 <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Datos Cardiacos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-icon name="heart" slot="start" color="danger"></ion-icon>
+      <ion-label>Pulsaciones por minuto:</ion-label>
+      <ion-input [(ngModel)]="pulsacionesPorMinuto" type="number" clearInput></ion-input>
+    </ion-item>
+  </ion-list>
+
+ <!---> <ion-button expand="full" (click)="guardarPulsaciones()">Guardar</ion-button>-->
+</ion-content>
+
+
+
+
+
+<!--<ion-header [translucent]="true">
     <ion-toolbar>
       <ion-title>
         Datos Cardiacos
@@ -18,34 +42,6 @@
   
 
   </ion-content>
-
-
-
-
-<!--<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Datos Cardiacos
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-item>
-      <ion-icon name="heart" slot="start" color="danger"></ion-icon>
-      <ion-input label="Latidos por Minuto" [value]="(items$ | async)?.[0]?.ritmo_cardiaco || ''" readonly></ion-input>
-    </ion-item>
-  </ion-list>
-
-  <ion-button expand="block">Mostrar Gráficas del Ritmo Cardiaco</ion-button>
-
-  <ion-list>
-    <ion-item *ngFor="let item of items$ | async">
-      {{ formatTime(item.timestamp) }}: {{ item.ritmo_cardiaco }}
-    </ion-item>
-  </ion-list>
-</ion-content>
 -->
 
 
