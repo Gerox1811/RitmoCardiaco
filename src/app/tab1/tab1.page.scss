@@ -1,10 +1,4 @@
-.chart-container {
-    max-width: auto;
-    margin: 0 auto;
-  }
-
-  
-  ion-icon[name="heart"] {
+ ion-icon[name="heart"] {
     font-size: 24px;
   }
   
@@ -22,5 +16,60 @@
   ion-button {
     margin-top: 20px;
     --background: #ff5733;
+  }
+
+  .custom-input {
+    font-size: 18px; /* Tamaño de fuente más grande */
+    opacity: 0.6; /* Opacidad reducida para el estado deshabilitado */
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    padding: 5px; /* Espaciado interno */
+  }
+
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: calc(50vh - 50px); /* Ajusta el valor según tus necesidades */
+    margin-top: 50px; /* Ajusta el margen superior según tus necesidades */
+  }
+
+  
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 30px; /* Ajusta el margen superior según tus necesidades */
+  }
+  
+  .input-container ion-item {
+    width: 100%; /* Asegura que el input ocupe todo el ancho */
+    margin-bottom: 10px; /* Ajusta el margen inferior del ion-item */
+  }
+
+  .message-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+  }
+  
+  .custom-card {
+    background-color: red;
+    width: 60%;
+    margin-top: -30px;
+    text-align: center;
+  }
+  
+  .message-content {
+    font-size: 20px;
+    padding: 10px;
+    color: white; /* Cambia el color del texto a blanco */
+  }
+  
+  .message-text {
+    margin: 0;
   }
   
