@@ -9,7 +9,12 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let dato of datosFueraDeRango">
-      <ion-label>{{ dato.valor }} - {{ calculateTimeDifference(dato.timestamp) }}</ion-label>
+      <ion-label>
+        {{ dato.valor }}
+      </ion-label>
+      <ion-note slot="end">
+        Actualizado hace {{ formatTime(dato.hora) }} segundos
+      </ion-note>
     </ion-item>
   </ion-list>
 </ion-content>

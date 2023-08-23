@@ -36,10 +36,10 @@ export class Tab1Page implements OnInit {
 
   checkPulsation() {
     
-    if (this.pulsacionesPorMinuto < 55) {
+    if (this.pulsacionesPorMinuto < 60) {
       this.pulsationState = 'low';
       console.log('Pulsación baja');
-    } else if (this.pulsacionesPorMinuto > 105) {
+    } else if (this.pulsacionesPorMinuto > 100) {
       this.pulsationState = 'high';
       console.log('Pulsación alta');
     } else {

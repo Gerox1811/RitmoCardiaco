@@ -9,9 +9,7 @@ import { DatabaseService } from '../services/database.service';
 export class HistorialPage implements OnInit {
   datosFueraDeRango: any[] = [];
 
-
   constructor(private databaseService: DatabaseService) { }
-
 
   ngOnInit() {
     this.loadDatosFueraDeRango();
@@ -19,27 +17,14 @@ export class HistorialPage implements OnInit {
 
   loadDatosFueraDeRango() {
     this.databaseService.getDatosFueraDeRango().subscribe((datos) => {
-      this.datosFueraDeRango = datos;
+      // Ordenar los datos por hora en orden descendente
+      this.datosFueraDeRango = datos.sort((a, b) => b.hora.localeCompare(a.hora));
       console.log('Datos fuera de rango:', this.datosFueraDeRango);
     });
   }
 
-  calculateTimeDifference(timestamp: any) {
-    if (timestamp instanceof Date) {
-      const currentTime = new Date();
-      const differenceInSeconds = Math.floor((currentTime.getTime() - timestamp.getTime()) / 1000);
-  
-      if (differenceInSeconds < 60) {
-        return `Actualizado hace ${differenceInSeconds} segundos`;
-      } else if (differenceInSeconds < 3600) {
-        const minutes = Math.floor(differenceInSeconds / 60);
-        return `Actualizado hace ${minutes} minutos`;
-      } else {
-        const hours = Math.floor(differenceInSeconds / 3600);
-        return `Actualizado hace ${hours} horas`;
-      }
-    } else {
-      return "Marca de tiempo no válida";
-    }
+  formatTime(secondsAgo: number) {
+    return secondsAgo.toString().replace(/^0+/, ''); // Eliminar ceros al principio
   }
+  
 }
