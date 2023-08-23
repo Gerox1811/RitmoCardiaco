@@ -7,20 +7,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  
-  <div class="center-container">
-    <img [src]="isPulsationLow ? 'assets/img/descanzo.png' : (isPulsationHigh ? 'assets/img/Ejercicio.png' : 'assets/img/normal.png')" alt="Estado del pulso">
-  </div>
-  
-  <div class="message-card">
-    <ion-card class="custom-card">
-      <ion-card-content class="message-content">
-        <p class="message-text">{{ isPulsationLow ? 'Tu pulso está Bajo' : (isPulsationHigh ? 'Tu pulso está Alto' : 'Tu pulso está Normal') }}</p>
-      </ion-card-content>
-    </ion-card>
-  </div>
-
-
   <div class="input-container">
     <ion-list>
       <ion-item>
@@ -36,5 +22,19 @@
       </ion-item>
     </ion-list>
   </div>
+  
+  <div class="center-container">
+    <img [src]="pulsationState === 'low' ? 'assets/img/descanzo.png' : (pulsationState === 'high' ? 'assets/img/Ejercicio.png' : 'assets/img/normal.png')" alt="Estado del pulso">
+  </div>
+  
+  <div class="message-card">
+    <ion-card class="custom-card">
+      <ion-card-content class="message-content">
+        <p class="message-text">{{ pulsationState === 'low' ? 'Tu pulso está Bajo' : (pulsationState === 'high' ? 'Tu pulso está Alto' : 'Tu pulso está Normal') }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+ 
 </ion-content>
 

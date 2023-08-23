@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
 import { DatabaseService  } from '../services/database.service';
 import * as firebase from 'firebase/app';
-import 'firebase/database';
+
 
 
 @Component({
@@ -13,8 +13,7 @@ import 'firebase/database';
 
 export class Tab1Page implements OnInit {
   pulsacionesPorMinuto: number = 0;
-  isPulsationLow: boolean = false;
-  isPulsationHigh: boolean = false;
+  pulsationState: 'low' | 'normal' | 'high' = 'normal';
 
   constructor(private databaseService: DatabaseService) {}
 
@@ -36,17 +35,19 @@ export class Tab1Page implements OnInit {
   }
 
   checkPulsation() {
+    
     if (this.pulsacionesPorMinuto < 55) {
-      this.isPulsationLow = true;
-      this.isPulsationHigh = false;
+      this.pulsationState = 'low';
+      console.log('Pulsación baja');
     } else if (this.pulsacionesPorMinuto > 105) {
-      this.isPulsationLow = false;
-      this.isPulsationHigh = true;
+      this.pulsationState = 'high';
+      console.log('Pulsación alta');
     } else {
-      this.isPulsationLow = false;
-      this.isPulsationHigh = false;
+      this.pulsationState = 'normal';
+      console.log('Pulsación normal');
     }
   }
+
   
   
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
-import { map } from 'rxjs/operators';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,11 @@ export class DatabaseService {
     );
   }
   
+  getDatosFueraDeRango(): Observable<any[]> {
+    const datosFueraDeRangoRef = this.db.list('datosFueraDeRango');
+    return datosFueraDeRangoRef.valueChanges();
+  }
+  
+
   
 }

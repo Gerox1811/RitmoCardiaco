@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { DateFnsModule } from 'ngx-date-fns';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -25,9 +26,10 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     CommonModule,
     CalendarModule.forRoot({
       provide: DateAdapter, // Proporciona el adaptador de fecha
-      useFactory: adapterFactory // Utiliza el adaptador de fecha de Date-Fns
+      useFactory: adapterFactory, // Utiliza el adaptador de fecha de Date-Fns
     }),
     DateFnsModule.forRoot()
+
   ],
   providers: 
   [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
