@@ -9,6 +9,7 @@ import { DatabaseService } from '../services/database.service';
 export class HistorialPage implements OnInit {
   datosFueraDeRango: any[] = [];
   pageLoadTime: number = new Date().getTime();
+  showWelcomeMessage = true;
 
   constructor(private databaseService: DatabaseService) { }
 
@@ -53,6 +54,10 @@ export class HistorialPage implements OnInit {
     }).catch((error) => {
       console.error('Error al borrar registros:', error);
     });
+  }
+
+  closeWelcomeMessage() {
+    this.showWelcomeMessage = false;
   }
 }
 

@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Ritmos Críticos</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="showWelcomeMessage = !showWelcomeMessage">
+        <ion-icon name="help-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="borrarRegistros()">
         <ion-icon name="trash-outline"></ion-icon>
@@ -10,7 +15,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="!showWelcomeMessage">
     <ion-item *ngFor="let dato of datosFueraDeRango">
       <ion-grid>
         <ion-row>
@@ -28,4 +33,14 @@
       </ion-grid>
     </ion-item>
   </ion-list>
+
+  <ion-card *ngIf="showWelcomeMessage">
+    <ion-card-header>
+      Bienvenido a RicarDio
+    </ion-card-header>
+    <ion-card-content>
+      Esta es la pantalla de Ritmos Críticos. Acá se guardarán los datos que no estén dentro de lo normal, que son entre los 60 y 100 Latidos por Minuto, y se actualizarán constantemente. Además, contarán con diferentes logos para diferenciarlos y en la parte superior derecha encontrarás un botón para vaciar la pantalla. Para volver a leer este mensaje, pulsa el botón <ion-icon name="help-circle-outline"></ion-icon>.
+    </ion-card-content>
+    <ion-button expand="full" (click)="closeWelcomeMessage()">Entendido</ion-button>
+  </ion-card>
 </ion-content>
