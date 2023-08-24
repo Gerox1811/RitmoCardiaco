@@ -80,3 +80,12 @@
     padding-top: 80px; /* Ajusta el espaciado según sea necesario */
     text-align: center;
   }
+
+  .corazon-animation {
+    position: absolute;
+    width: 30px; /* Ajusta el tamaño según tus necesidades */
+    height: 30px; /* Ajusta el tamaño según tus necesidades */
+    transition: top 0.5s ease-in-out; /* Agrega una transición suave al movimiento */
+  
+    /* Agrega más estilos de diseño o animación según lo desees */
+  }

@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'historial',
     loadChildren: () => import('./historial/historial.module').then( m => m.HistorialPageModule)
+  },
+  {
+    path: 'grafica',
+    loadChildren: () => import('./grafica/grafica.module').then( m => m.GraficaPageModule)
   }
 ];
 @NgModule({

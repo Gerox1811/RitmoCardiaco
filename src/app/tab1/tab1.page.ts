@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Observable } from 'rxjs';
 import { DatabaseService  } from '../services/database.service';
 import * as firebase from 'firebase/app';
@@ -14,6 +14,7 @@ import { AlertController } from '@ionic/angular';
 
 export class Tab1Page implements OnInit {
   pulsacionesPorMinuto: number = 0;
+  @Input() valorCorazon: number = 80;
   pulsationState: 'low' | 'normal' | 'high' = 'normal';
 
   constructor(
@@ -38,11 +39,29 @@ export class Tab1Page implements OnInit {
   loadPulsacionesPorMinuto() {
     this.databaseService.getPulsacionesPorMinuto().subscribe((pulsaciones) => {
       this.pulsacionesPorMinuto = pulsaciones;
+      
       console.log('Pulsaciones por minuto recibidas:', this.pulsacionesPorMinuto);
       this.checkPulsation();
-  
+      this.updateValorCorazon();
     });
   }
+
+  updateValorCorazon() {
+    const minPulsaciones = 40; // Mínimo valor de pulsaciones
+    const maxPulsaciones = 120; // Máximo valor de pulsaciones
+    const minPosition = 10; // Posición vertical mínima
+    const maxPosition = 200; // Posición vertical máxima
+    const positionRange = maxPosition - minPosition;
+    
+    // Calcula la posición vertical del corazón en función de las pulsaciones
+    const position = minPosition + ((this.pulsacionesPorMinuto - minPulsaciones) / (maxPulsaciones - minPulsaciones)) * positionRange;
+  
+    // Limita la posición para asegurarte de que esté dentro de los límites
+    this.valorCorazon = Math.max(minPosition, Math.min(maxPosition, position));
+  }
+
+
+
 
   checkPulsation() {
     if (this.pulsacionesPorMinuto < 60) {
@@ -97,7 +116,7 @@ export class Tab1Page implements OnInit {
   async mostrarMensajePantallaPrincipal() {
     const alert = await this.alertController.create({
       header: 'Pantalla Principal',
-      message: 'En la pantalla principal, podrás ver el ritmo cardiaco en tiempo real. 1.El valor del Ritmo Cardiaco cambiará conforme lo detecte nuestro sensor. 2.Además, contarás con una imagen que se ajustará según tu Ritmo Cardiaco, siendo la imagen de la cama la representación del ritmo más bajo y la imagen de ejercicio la más alta. 3.También tendrás un mensaje que te indicará si tus latidos están normales o sufren un cambio repentino. Finalmente, cuando alcances el Ritmo Cardiaco mínimo o máximo, 4.aparecerán alertas en pantalla para que puedas tomar un respiro.',
+      message: 'En la pantalla principal, podrás ver el ritmo cardiaco en tiempo real. 1.El valor del Ritmo Cardiaco cambiará conforme lo detecte nuestro sensor. 2.Además, contarás con una imagen que se ajustará según tu Ritmo Cardiaco, siendo la imagen de la cama la representación del ritmo más bajo y la imagen de ejercicio la más alta. 3.También tendrás un mensaje que te indicará si tus latidos están normales o sufren un cambio repentino. Finalmente, cuando alcances el Ritmo Cardiaco mínimo o máximo, aparecerán alertas en pantalla para que puedas tomar un respiro.',
       buttons: ['Entendido']
     });
   

@@ -30,7 +30,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
       useFactory: adapterFactory, // Utiliza el adaptador de fecha de Date-Fns
     }),
     DateFnsModule.forRoot(),
-  
+
     
 
   ],

@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Control de Ritmo</ion-title>
+    <ion-buttons slot="start">
+      <ion-icon name="help"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="input-container">
+    <ion-list>
+      <ion-item>
+        <ion-icon name="heart" slot="start" color="danger"></ion-icon>
+        <ion-label class="input-label">Pulsaciones por minuto:</ion-label>
+        <ion-input
+          [(ngModel)]="pulsacionesPorMinuto"
+          type="number"
+          clearInput
+          [disabled]="true"
+        
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="bar-chart">
+    <div *ngFor="let categoria of pulsosCategorias; let i = index" class="bar" [style.height.%]="(pulsosContados[i] / totalPulsaciones) * 100" [class.pulso-bajo]="categoria.nombre === 'Pulso Bajo'">
+      {{ categoria.nombre }}: {{ pulsosContados[i] }}
+    </div>
+  </div>
+</ion-content>
