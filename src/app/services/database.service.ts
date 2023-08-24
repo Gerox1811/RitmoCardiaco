@@ -24,9 +24,30 @@ export class DatabaseService {
   }
   
   getDatosFueraDeRango(): Observable<any[]> {
-    return this.datosFueraDeRangoRef.valueChanges();
+    return this.datosFueraDeRangoRef.valueChanges().pipe(
+      map(datos => {
+        return datos.map(dato => ({
+          ...dato,
+          tiempo_referencia: new Date(dato.tiempo_referencia) // Convertir tiempo_referencia a objeto Date
+        }));
+      })
+    );
   }
   
+  borrarRegistros(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const datosFueraDeRangoRef = this.db.list('/datosFueraDeRango');
+      datosFueraDeRangoRef.remove()
+        .then(() => {
+          console.log('Registros borrados exitosamente');
+          resolve();
+        })
+        .catch((error) => {
+          console.error('Error al borrar registros:', error);
+          reject(error);
+        });
+    });
+  }
 
   
 }

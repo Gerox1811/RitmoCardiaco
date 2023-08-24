@@ -1,20 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Historial
-    </ion-title>
+    <ion-title>Ritmos Críticos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="borrarRegistros()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let dato of datosFueraDeRango">
-      <ion-label>
-        {{ dato.valor }}
-      </ion-label>
-      <ion-note slot="end">
-        Actualizado hace {{ formatTime(dato.hora) }} segundos
-      </ion-note>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="1.5">
+            <ion-img *ngIf="dato.valor < 60" [src]="'assets/img/corazon_dormido.png'" style="width: 3.5rem; height: 3.5rem;"></ion-img>
+            <ion-img *ngIf="dato.valor > 100" [src]="'assets/img/corazon_ejercicio.png'" style="width: 3.5rem; height: 3.5rem;"></ion-img>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-label style="margin-left: 2rem;">{{ dato.valor }}</ion-label>
+          </ion-col>
+          <ion-col size="3" class="ion-text-end custom-message">
+            <ion-note>{{ calculateTimeDifference(pageLoadTime) }}</ion-note>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
 </ion-content>
