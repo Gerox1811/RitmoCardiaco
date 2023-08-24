@@ -15,6 +15,7 @@ import { DateFnsModule } from 'ngx-date-fns';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,7 +29,9 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
       provide: DateAdapter, // Proporciona el adaptador de fecha
       useFactory: adapterFactory, // Utiliza el adaptador de fecha de Date-Fns
     }),
-    DateFnsModule.forRoot()
+    DateFnsModule.forRoot(),
+  
+    
 
   ],
   providers: 

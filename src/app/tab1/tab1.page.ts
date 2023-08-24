@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
 import { DatabaseService  } from '../services/database.service';
 import * as firebase from 'firebase/app';
+import { AlertController } from '@ionic/angular';
 
 
 
@@ -15,7 +16,10 @@ export class Tab1Page implements OnInit {
   pulsacionesPorMinuto: number = 0;
   pulsationState: 'low' | 'normal' | 'high' = 'normal';
 
-  constructor(private databaseService: DatabaseService) {}
+  constructor(
+    private databaseService: DatabaseService,
+    private alertController: AlertController
+  ) {}
 
   ngOnInit() {
    
@@ -35,19 +39,37 @@ export class Tab1Page implements OnInit {
   }
 
   checkPulsation() {
-    
     if (this.pulsacionesPorMinuto < 60) {
       this.pulsationState = 'low';
-      console.log('Pulsación baja');
+      this.mostrarAlertaBajo(); // Mostrar alerta
     } else if (this.pulsacionesPorMinuto > 100) {
       this.pulsationState = 'high';
-      console.log('Pulsación alta');
+      this.mostrarAlertaAlto(); // Mostrar alerta
     } else {
       this.pulsationState = 'normal';
-      console.log('Pulsación normal');
     }
   }
 
+  async mostrarAlertaBajo() {
+    const alert = await this.alertController.create({
+      header: '¡Cuidado!',
+      message: 'Tu pulso está demasiado bajo. Ten cuidado.',
+      buttons: ['Aceptar'],
+      cssClass: 'custom-alert'
+    });
   
+    await alert.present();
+  }
+  
+  async mostrarAlertaAlto() {
+    const alert = await this.alertController.create({
+      header: '¡Cuidado!',
+      message: 'Tu pulso está demasiado alto. Ten cuidado.',
+      buttons: ['Aceptar'],
+      cssClass: 'custom-alert'
+    });
+  
+    await alert.present();
+  }
   
 }

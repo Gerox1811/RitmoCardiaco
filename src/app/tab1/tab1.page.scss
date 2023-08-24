@@ -73,3 +73,10 @@
     margin: 0;
   }
   
+  .custom-alert {
+    background-image: url('../../assets/img/descanzo.png'); /* Ruta de la imagen */
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 80px; /* Ajusta el espaciado según sea necesario */
+    text-align: center;
+  }
